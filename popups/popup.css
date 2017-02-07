@@ -181,6 +181,9 @@ table.entries th .copied {
   font-size: smaller;
   background-color: rgba(100, 220, 100, 0.5);
 }
+.copy-username-link {
+  width: 100%;
+}
 statusMessage {
   display: block;
   padding: 4px 0;

@@ -115,9 +115,10 @@ function UnlockedState($interval, $location, keepass, protectedMemory, settings)
 		}
 	}
 
-	my.copyPassword = function(entry) {
+	my.copy= function(entry) {
 		copyEntry = entry;
-		entry.copied = true;
+		if(typeof copyEntry !== 'string')
+			entry.copied = true;
 		document.execCommand('copy');
 	}
 
@@ -136,7 +137,7 @@ function UnlockedState($interval, $location, keepass, protectedMemory, settings)
 			return; //listener can get registered multiple times
 		}
 
-		var textToPutOnClipboard = getPassword(copyEntry);
+		var textToPutOnClipboard = typeof copyEntry !== 'string' ? getPassword(copyEntry) : copyEntry;
 		copyEntry = null;
 		e.clipboardData.setData('text/plain', textToPutOnClipboard);
 		e.preventDefault();

@@ -27,5 +27,5 @@ function ChooseFileController($scope, $location, passwordFileStoreRegistry, sett
       $location.path('/enter-password/' + database.provider.key + '/' + encodeURIComponent(database.title));
       $scope.$apply();
     });
-  }
+  };
 }

@@ -59,6 +59,9 @@ function MasterPasswordController($scope, $routeParams, $location, keepass, unlo
         }
       }
     }
+
+    if(!$scope.hideKeyFile && $scope.keyFiles && $scope.keyFiles.length === 1)
+      $scope.selectedKeyFile = $scope.keyFiles[0];
   }).then(function() {
     $scope.$apply();
   });
@@ -82,15 +85,23 @@ function MasterPasswordController($scope, $routeParams, $location, keepass, unlo
     secureCache.clear('streamKey');
   });
 
+  settings.getPrimaryRememberTime().then(function(option) {
+    $scope.primaryRememberTime = option;
+  });
+
+  settings.getSecondaryRememberTime().then(function(option) {
+    $scope.secondaryRememberTime = option;
+  });
+
   $scope.forgetPassword = function() {
  		settings.saveCurrentDatabaseUsage({
-      
+
     }).then(function() {
 			secureCache.clear('entries');
 			secureCache.clear('streamKey');
 			unlockedState.clearBackgroundState();
     	window.close();
-    }); 	
+    });
   }
 
   //go to the options page to manage key files
@@ -111,7 +122,7 @@ function MasterPasswordController($scope, $routeParams, $location, keepass, unlo
 
     var passwordKeyPromise;
     if (!passwordKey) {
-    	passwordKeyPromise = keepass.getMasterKey($scope.masterPassword, $scope.selectedKeyFile)
+    	passwordKeyPromise = keepass.getMasterKey($scope.masterPassword, $scope.selectedKeyFile);
     } else {
 			passwordKeyPromise = Promise.resolve(passwordKey);
 		}

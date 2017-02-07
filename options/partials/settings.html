@@ -27,6 +27,30 @@
                 <label for="settings-PasswordListGroupOption-hide">Hide</label>
             </td>
         </tr>
+        <tr>
+        </tr>
     </tbody>
   </table>
+</fieldset>
+<fieldset>
+    <legend>Customize Remember Times</legend>
+    Settings affecting the customization of remember times
+      <table class="pure-table pure-table-horizontal settings entries">
+        <thead>
+          <tr>
+            <th>Setting</th>
+            <th>Minutes</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Primary Remember Time</td>
+                <td><input id="settings-PrimaryRememberTime" name="PrimaryRememberTime" ng-model="settings.PrimaryRememberTime" ng-blur="saveSettings()"></td>
+            </tr>
+            <tr>
+                <td>Secondary Remember Time</td>
+                <td><input id="settings-SecondaryRememberTime" name="SecondaryRememberTime" ng-model="settings.SecondaryRememberTime" ng-blur="saveSettings()"></td>
+            </tr>
+        </tbody>
+    </table>
 </fieldset>

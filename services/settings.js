@@ -326,10 +326,7 @@ function Settings() {
 
   exports.getPasswordListIconOption = function() {
     return chrome.p.storage.local.get('showPasswordListIcon').then(function(option) {
-		return {
-			entry: option.showPasswordListIcon.entry || false,
-			group: option.showPasswordListIcon.group || false
-		}
+    	return option.showPasswordListIcon || false;
 	})
   }
 
@@ -343,6 +340,26 @@ function Settings() {
     return chrome.p.storage.local.get('showPasswordListGroup').then(function(option) {
 		return option.showPasswordListGroup || false;
 	})
+  }
+
+  exports.getPrimaryRememberTime = function() {
+  	return chrome.p.storage.local.get('primaryRememberTime').then(function(option) {
+  		return option.primaryRememberTime || '120';
+  	});
+  }
+
+  exports.setPrimaryRememberTime = function(option) {
+  	return chrome.p.storage.local.set({'primaryRememberTime': option});
+  }
+
+  exports.getSecondaryRememberTime = function() {
+  	return chrome.p.storage.local.get('secondaryRememberTime').then(function(option) {
+  		return option.secondaryRememberTime || '30';
+  	});
+  }
+
+  exports.setSecondaryRememberTime = function(option) {
+  	return chrome.p.storage.local.set({'secondaryRememberTime': option});
   }
 
 	return exports;
